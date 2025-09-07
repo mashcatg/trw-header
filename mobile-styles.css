@@ -215,7 +215,7 @@
 }
 
 /* Ensure items are invisible before animation */
-.mobile-tab-content.active .mobile-option {
+.mobile-tab-content.active .mobile-option, .mobile-tab-content.active .mobile-links-container {
   opacity: 0;
   visibility: hidden;
   animation: fadeInDown 0.2s ease forwards;
