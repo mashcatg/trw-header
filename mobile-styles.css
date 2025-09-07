@@ -6,7 +6,7 @@
     --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-@keyframes slideInFromRight {
+/* @keyframes slideInFromRight {
     0% {
         transform: translateX(100%);
         opacity: 0;
@@ -15,8 +15,19 @@
         transform: translateX(0);
         opacity: 1;
     }
+} */
+@keyframes fadeInDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+  }
 }
-
 .header.menu-open {
     background: var(--dark);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -200,8 +211,15 @@
 }
 
 .mobile-tab-content.active {
-    display: block;
-    animation: slideInFromRight 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  display: block;
+}
+
+/* Ensure items are invisible before animation */
+.mobile-tab-content.active .mobile-option {
+  opacity: 0;
+  visibility: hidden;
+  animation: fadeInDown 0.2s ease forwards;
+  animation-delay: 0.2s;
 }
 
 .mobile-submenu.active {
