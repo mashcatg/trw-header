@@ -1671,7 +1671,7 @@ color: var(--primary-color);
   opacity: 1;
 }
 .mobile-tab-content.active .mobile-links-container {
-      transform: translate(-15px);
+      transform: translate(-20px);
     padding: 0;
     padding-right: 20px;
 }
