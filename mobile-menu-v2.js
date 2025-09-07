@@ -106,14 +106,17 @@ class MobileMenu {
         });
 
         // Handle tabs
-        this.tabs.forEach(tab => {
-            tab.addEventListener('click', () => {
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('mobile-tab')) {
+                const tab = e.target;
                 const tabId = tab.dataset.tab;
                 const submenu = tab.closest('.mobile-submenu');
                 if (submenu && tabId) {
+                    e.preventDefault();
+                    e.stopPropagation();
                     this.switchTab(submenu, tabId, tab);
                 }
-            });
+            }
         });
 
         // Handle direct navigation links
@@ -279,40 +282,19 @@ class MobileMenu {
         });
         clickedTab.classList.add('active');
 
-        // Get current and target content
-        const currentContent = submenu.querySelector('.mobile-tab-content.active');
-        const targetContent = submenu.querySelector(`[data-tab-content="${tabId}"]`);
+        // Hide all tab contents first
+        submenu.querySelectorAll('.mobile-tab-content').forEach(content => {
+            content.classList.remove('active');
+            content.style.display = 'none';
+        });
 
+        // Get current and target content
+        const targetContent = submenu.querySelector(`[data-tab-content="${tabId}"]`);
         if (!targetContent) return;
 
-        // First, start the exit animation for current content
-        if (currentContent) {
-            currentContent.classList.remove('active');
-            currentContent.style.opacity = '0';
-            currentContent.style.transform = 'translateX(-20px)';
-        }
-
-        // Then, set up the new content
-        setTimeout(() => {
-            if (currentContent) {
-                currentContent.style.display = 'none';
-            }
-
-            // Show new content
-            targetContent.style.display = 'block';
-            targetContent.style.opacity = '0';
-            targetContent.style.transform = 'translateX(20px)';
-            
-            // Force reflow
-            targetContent.offsetHeight;
-
-            // Animate in
-            requestAnimationFrame(() => {
-                targetContent.classList.add('active');
-                targetContent.style.opacity = '1';
-                targetContent.style.transform = 'translateX(0)';
-            });
-        }, currentContent ? 300 : 0);
+        // Show new content immediately
+        targetContent.style.display = 'block';
+        targetContent.classList.add('active');
 
         this.activeTab = clickedTab;
     }

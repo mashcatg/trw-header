@@ -1662,7 +1662,19 @@ transition: var(--transition-smooth);
 color: var(--primary-color);
 }
 
+.mobile-final-link {
+  opacity: 0;
+  transition: opacity 0.3s ease; /* Optional for smooth fade */
+}
 
+.mobile-tab-content.active .mobile-final-link {
+  opacity: 1;
+}
+.mobile-tab-content.active .mobile-links-container {
+      transform: translate(-12px);
+    padding: 0;
+    padding-right: 20px;
+}
 /* Chat Widget Container */
 #chat-widget-container {
 position: fixed;
