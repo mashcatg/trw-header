@@ -83,7 +83,7 @@ chatBody.scrollTop = chatBody.scrollHeight;
 
 const chatId = getChatId();
 
-fetch('https://mashrafaimancopilot2.app.n8n.cloud/webhook/9cc113e7-d987-45a2-8e91-a4a664624d05/chat', {
+fetch('https://n8n.srv998239.hstgr.cloud/webhook/9cc113e7-d987-45a2-8e91-a4a664624d05/chat', {
 method: 'POST',
 headers: { "Content-Type": "application/json" },
 body: JSON.stringify({ chatId: chatId, message: message, route: 'general' })
